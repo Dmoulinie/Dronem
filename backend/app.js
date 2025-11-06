@@ -14,7 +14,7 @@ const db = new sqlite3.Database(path.join(__dirname, 'dronem_database.db'));
 // instantiation de la base au départ
 
 // création des tables
-ajoutDonnees.createTables()
+ ajoutDonnees.createTables(db)
 
 // affiche le schéma (toutes les tables + structure)
 db.all("SELECT sql FROM sqlite_master WHERE type='table';", [], (err, rows) => {
@@ -25,6 +25,9 @@ db.all("SELECT sql FROM sqlite_master WHERE type='table';", [], (err, rows) => {
     rows.forEach((row) => console.log(row.sql));
   }
 });
+
+db.close();
+console.log('Connexion SQLite fermée ✅');
 
 
 // Middleware
