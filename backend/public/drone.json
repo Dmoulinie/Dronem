@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "name": "Samoussator",
+    "model": "SM-01",
+    "description": "Né dans une friteuse, élevé dans le ciel du Caillou. Compact, nerveux et légèrement croustillant, le Samoussator combine vitesse triangulaire, stabilité feuilletée et propulsion à huile de sésame recyclée. Idéal pour les décollages express au-dessus des snacks locaux.",
+    "category": "Chaud",
+    "battery": "Huile de sésame 3000mAh",
+    "speed": 180,
+    "price": 59900,
+    "image_path": "images/samoussator.png"
+  },
+  {
+    "id": 2,
+    "name": "Puaka Turbo",
+    "model": "PK-TB",
+    "description": "Le cochon du ciel. Gras, bruyant et fier de l’être. Propulsé par un moteur V8 sauce barbecue, le Puaka Turbo traverse la brousse et le ciel avec la même détermination. Parfait pour les amateurs de drones costauds qui sentent un peu le fumé.",
+    "category": "Chaud",
+    "battery": "Graisse de porc 5000mAh",
+    "speed": 175,
+    "price": 74900,
+    "image_path": "images/puaka_turbo.png"
+  },
+  {
+    "id": 3,
+    "name": "Nem Supersonic",
+    "model": "NM-SP",
+    "description": "Le rouleau le plus rapide du Pacifique. Avec son aérodynamisme de snack et son cœur croustillant, le Nem Supersonic atteint des vitesses records sans jamais se décomposer. Parfait pour les livraisons express entre deux snacks.",
+    "category": "Chaud",
+    "battery": "Sauce soja 4000mAh",
+    "speed": 185,
+    "price": 67900,
+    "image_path": "images/nem_supersonic.png"
+  },
+  {
+    "id": 4,
+    "name": "BougnaFly",
+    "model": "BG-FL",
+    "description": "L’âme du Caillou dans un drone. Cuit à la vapeur de coco et piloté à la main en feuilles de bananier, le BougnaFly allie tradition et technologie. Il ne vole pas : il plane avec respect.",
+    "category": "Chaud",
+    "battery": "Racines de taro 4500mAh",
+    "speed": 160,
+    "price": 81900,
+    "image_path": "images/bougnafly.png"
+  },
+  {
+    "id": 5,
+    "name": "Cagou Grill",
+    "model": "CG-GR",
+    "description": "Fier, bruyant et toujours debout. Le Cagou Grill est le drone emblématique du Caillou : un cri dans le ciel, une flamme dans le moteur. Interdit de vol avant le lever du soleil.",
+    "category": "Chaud",
+    "battery": "Feu de bois 3800mAh",
+    "speed": 180,
+    "price": 69900,
+    "image_path": "images/cagou_grill.png"
+  },
+  {
+    "id": 6,
+    "name": "Poisson Cru 4K",
+    "model": "PC-4K",
+    "description": "Le drone du lagon, taillé pour la précision et la fraîcheur. Capable de capturer les plus beaux reflets turquoise sans surchauffe, le Poisson Cru 4K est le compagnon idéal des prises de vue à la mode Lifou.",
+    "category": "Froid",
+    "battery": "Jus de citron 3500mAh",
+    "speed": 140,
+    "price": 68900,
+    "image_path": "images/poisson_cru_4k.png"
+  },
+  {
+    "id": 7,
+    "name": "Sashimi AirLine",
+    "model": "SS-AL",
+    "description": "Tranchant, élégant et parfaitement équilibré. Le Sashimi AirLine vole avec la précision d’un couteau japonais et la grâce d’une algue flottante. Zéro cuisson, zéro résistance, 100 % fraîcheur.",
+    "category": "Froid",
+    "battery": "Riz vinaigré 2800mAh",
+    "speed": 160,
+    "price": 70900,
+    "image_path": "images/sashimi_airline.png"
+  },
+  {
+    "id": 8,
+    "name": "Tartare One",
+    "model": "TT-ONE",
+    "description": "Simple, brut et efficace. Le Tartare One ne cuit rien, il analyse tout. Une machine sobre, directe et pleine de caractère, conçue pour ceux qui aiment le minimalisme bien assaisonné.",
+    "category": "Froid",
+    "battery": "Mayonnaise 3000mAh",
+    "speed": 130,
+    "price": 65900,
+    "image_path": "images/tartare_one.png"
+  },
+  {
+    "id": 9,
+    "name": "Sorbet Zouk",
+    "model": "SB-ZK",
+    "description": "Un drone givré, né pour la fête. Avec son hélice fruitée et son style tropical, le Sorbet Zouk dégage une vague de fraîcheur à chaque passage. Idéal pour les vols de plage et les siestes en mode chill.",
+    "category": "Froid",
+    "battery": "Purée de mangue 3800mAh",
+    "speed": 120,
+    "price": 63900,
+    "image_path": "images/sorbet_zouk.png"
+  },
+  {
+    "id": 10,
+    "name": "Poke-Kopt’Air",
+    "model": "PK-PTA",
+    "description": "Coloré, équilibré et prêt à décoller du saladier. Le Poke Kopt’Air mélange précision hawaïenne et fraîcheur calédonienne. Un vol doux, sain et sans friture, garanti sans mayonnaise.",
+    "category": "Froid",
+    "battery": "Riz collant 2700mAh",
+    "speed": 145,
+    "price": 66900,
+    "image_path": "images/poke_koptair.png"
+  },
+  {
+    "id": 11,
+    "name": "Rhum-Kopt'air",
+    "model": "RH-CPT",
+    "description": "Doux au décollage, mais gare à l’atterrissage. Le Rhum-Kopt'air est conçu pour les vols festifs et les fins de journée au deck. Attention : plus le vol dure, moins la trajectoire est droite.",
+    "category": "Boisson",
+    "battery": "Canne à sucre 4500mAh",
+    "speed": 155,
+    "price": 72900,
+    "image_path": "images/rhum_koptair.png"
+  },
+  {
+    "id": 12,
+    "name": "Ti-Punch Xplorer",
+    "model": "TP-XPL",
+    "description": "Léger, acidulé et plein d’énergie solaire. Le Ti-Punch Xplorer adore le soleil couchant et les brises marines. Drone convivial, toujours prêt à partager un vol entre amis.",
+    "category": "Boisson",
+    "battery": "Citron vert 3200mAh",
+    "speed": 160,
+    "price": 68900,
+    "image_path": "images/ti_punch_xplorer.png"
+  },
+  {
+    "id": 13,
+    "name": "Kava Flyer",
+    "model": "KV-FLY",
+    "description": "Planant, relaxant, et légèrement flou à la longue. Le Kava Flyer décolle lentement, mais reste en vol stationnaire pendant des heures. Recommandé pour les pilotes zen.",
+    "category": "Boisson",
+    "battery": "Racine de kava 5000mAh",
+    "speed": 100,
+    "price": 61900,
+    "image_path": "images/kava_flyer.png"
+  },
+  {
+    "id": 14,
+    "name": "Pastis Patrol",
+    "model": "PS-PTL",
+    "description": "Stable avant 17 h, instable après. Le Pastis Patrol adore le soleil, la terrasse et les discussions sans fin. Drone méditerranéen d’adoption, il se dilue à la première rafale de vent.",
+    "category": "Boisson",
+    "battery": "Anis liquide 3500mAh",
+    "speed": 140,
+    "price": 65900,
+    "image_path": "images/pastis_patrol.png"
+  },
+  {
+    "id": 15,
+    "name": "Number One AirDrop",
+    "model": "NB-01",
+    "description": "Froid, doré et toujours prêt pour l’apéro. Le Number One AirDrop est le drone de livraison officielle des week-ends au creek. Équipé d’un système de maintien thermique, il garde la canette à parfaite température jusqu’à destination — même après quelques tonneaux.",
+    "category": "Boisson",
+    "battery": "Malt pressurisé 3500mAh",
+    "speed": 150,
+    "price": 72900,
+    "image_path": "images/number_one_airdrop.png"
+  },
+  {
+    "id": 16,
+    "name": "Modka Vonster",
+    "model": "MV-VNS",
+    "description": "Fort, sucré, énergique : un mélange explosif entre Monster et vodka. Le Modka Vonster combine puissance brute et effet retard. Non recommandé pour les vols en ligne droite.",
+    "category": "Boisson",
+    "battery": "Cocktail énergisant 2500mAh",
+    "speed": 197,
+    "price": 99900,
+    "image_path": "images/modka_vonster.png"
+  }
+]
