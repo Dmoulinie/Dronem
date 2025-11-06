@@ -1,0 +1,144 @@
+/* ====== LAYOUT GLOBAL ====== */
+.layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.2rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .logo {
+    text-align: center;
+}
+
+.sidebar .logo img {
+    width: 80px;
+    margin-bottom: 0.8rem;
+}
+
+.sidebar .logo h2 {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #0078d4;
+    margin: 0;
+}
+
+.sidebar .logo p {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.2rem;
+}
+
+.sidebar .text {
+    text-align: center;
+    line-height: 1.8;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.sidebar .text span {
+    color: #0078d4;
+    font-weight: 600;
+}
+
+.sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 3rem;
+}
+
+.sidebar .menu a {
+    color: #111;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+
+.sidebar .menu a:hover {
+    color: #0078d4;
+}
+
+.sidebar .menu a.active {
+    color: #0078d4;
+    font-weight: bold;
+}
+
+/* ====== CONTENU PRINCIPAL ====== */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    background: #f9f9f9;
+    scroll-behavior: smooth;
+}
+
+/* ====== SCROLLBAR PERSONNALISÉE ====== */
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 70px;
+        padding: 1rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .sidebar .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .sidebar .logo img {
+        width: 40px;
+        margin: 0;
+    }
+
+    .sidebar .text {
+        display: none;
+    }
+
+    .sidebar .menu {
+        flex-direction: row;
+        gap: 1.5rem;
+        margin: 0;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,16 @@
+
+.cards {
+    display:flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.card {
+    padding: 0;
+    margin: 0;
+    background: #00ccff;
+    width: 100%;
+    border: 2px solid black
+}
