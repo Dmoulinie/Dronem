@@ -13,6 +13,8 @@ public/
 routes/
 │   ├── droneCtrl.js
 │   └── userCtrl.js
+utils/
+|__ ajoutDonnes.js
 │
 ├── app.js
 └── apiRouter.js
@@ -38,6 +40,9 @@ routes/
 
 - **public/**  
   Contient les **ressources statiques** (images, etc.).
+
+- **utils/**
+  Contient les fichiers contenant des fonctions utiles à l'application
 
 - **dronem_database.db**  
   Base de données SQLite locale utilisée par les contrôleurs.
