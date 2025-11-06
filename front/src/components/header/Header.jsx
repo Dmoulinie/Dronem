@@ -4,22 +4,24 @@ export default function Header() {
     return (
         <>
             <div className={"sidebar"}>
-                <div className={"logo"}>
-                    Logo
-                </div>
-                <div>
-                    Votre fournisseur de drones de livraison de nem préféré à petit prix
+                <NavLink to={"/"} className={"logo"}>
+                    <img src="../../../public/logo.png" alt="Logo Dronem"></img>
+                </NavLink>
+
+
+                <div className={"presentation-text"}>
+                    Votre fournisseur de drones de livraison de nem préféré à petit prix !
                 </div>
                 <nav>
-                    <ul>
+                    <ul className={"nav-links"}>
                         <li>
-                            <NavLink to={"/"}>Accueil</NavLink>
+                            <NavLink to={"/"} className={"nav-link"}>Accueil</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/listProducts"}>Liste des drones</NavLink>
+                            <NavLink to={"/listProducts"} className={"nav-link"}>Liste des drones</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/contact"}>Contact</NavLink>
+                            <NavLink to={"/contact"} className={"nav-link"}>Contact</NavLink>
                         </li>
                     </ul>
                 </nav>
