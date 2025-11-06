@@ -6,9 +6,8 @@ const path = require('path');
 
 // Exported functions
 module.exports = {
-    createTables : function(){
+    createTables : async function(db){
         
-        const db = new sqlite3.Database('../dronem_database.db');
 
         // Création de la table si elle n’existe pas
         db.run(`
@@ -47,6 +46,7 @@ module.exports = {
             FOREIGN KEY (id_drone) REFERENCES drone(id)
         )
         `);
+
     },
 
     insererDrones : function(){
