@@ -1,0 +1,110 @@
+/* ----- RESET ----- */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+    background: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ----- LAYOUT ----- */
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+}
+
+/* ----- SIDEBAR STYLE (gauche) ----- */
+.sidebar {
+    padding: 40px 30px;
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
+    text-align: center;
+}
+
+.sidebar img {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.sidebar p {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.sidebar nav a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    transition: opacity 0.2s;
+}
+
+.sidebar nav a:hover {
+    opacity: 0.6;
+}
+
+/* ----- SECTION CONTENU (droite) ----- */
+.content {
+    padding: 60px 80px;
+}
+
+.content h1, .content h2 {
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.content p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* ----- BLOC INFOS PRODUIT ----- */
+.product-info {
+    margin-bottom: 30px;
+}
+
+.product-info p span {
+    font-weight: 600;
+}
+
+/* ----- ALIGNEMENT TEXTE + IMAGE ----- */
+.content-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* Texte à gauche */
+.product-text {
+    flex: 1;
+}
+
+/* Image à droite */
+.product-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive : mobile */
+@media (max-width: 768px) {
+    .content-row {
+        flex-direction: column;
+    }
+
+    .product-image {
+        align-self: center;
+    }
+}

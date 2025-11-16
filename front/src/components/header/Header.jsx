@@ -9,13 +9,13 @@ export default function Header() {
                 </NavLink>
 
 
-                <div className={"presentation-text"}>
+                <h2 className={"presentation-text"}>
                     Votre fournisseur de drones de livraison de nem préféré à petit prix !
-                </div>
+                </h2>
                 <nav>
                     <ul className={"nav-links"}>
                         <li>
-                            <NavLink to={"/"} className={"nav-link"}>Accueil</NavLink>
+                            <NavLink to={"/"} className={"nav-link"}>Accueil </NavLink>
                         </li>
                         <li>
                             <NavLink to={"/listProducts"} className={"nav-link"}>Liste des drones</NavLink>
