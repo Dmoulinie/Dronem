@@ -1,14 +1,13 @@
 // imports
-const express = require('express');
-const droneCtrl = require('./routes/droneCtrl');
-
-// Router
-exports.router = (function() {
-    const apiRouter = express.Router();
-
-    //  route de récupération des drones
-    apiRouter.route('/drones/getDrones/').get(droneCtrl.getDrones);
+import express from 'express';
+import droneCtrl from './routes/droneCtrl.js';
 
 
-    return apiRouter;
-})();
+const apiRouter = express.Router();
+
+
+// route de récupération des drones
+apiRouter.get('/drones/getDrones', droneCtrl.getDrones);
+apiRouter.get('/drones/getDroneById/:id', droneCtrl.getDroneById);
+
+export { apiRouter as router };
