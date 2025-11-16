@@ -13,7 +13,10 @@ const app = express();
 const PORT = 8080;
 
 // Middleware
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 

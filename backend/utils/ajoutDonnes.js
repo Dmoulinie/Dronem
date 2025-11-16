@@ -49,7 +49,6 @@ export function createTables(db) {
         CREATE TABLE IF NOT EXISTS cart (
           id_user INTEGER,
           id_drone INTEGER,
-          name TEXT,
           quantity TEXT,
           PRIMARY KEY (id_user, id_drone),
           FOREIGN KEY (id_user) REFERENCES user(id),
