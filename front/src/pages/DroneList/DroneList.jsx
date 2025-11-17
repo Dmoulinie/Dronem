@@ -47,17 +47,17 @@ export default function DroneList() {
                     </button>
 
                     <button
-                        className={filter === "chaud" ? "filter-btn active" : "filter-btn"}
-                        onClick={() => setFilter("chaud")}
-                    >
-                        Chaud
-                    </button>
-
-                    <button
                         className={filter === "froid" ? "filter-btn active" : "filter-btn"}
                         onClick={() => setFilter("froid")}
                     >
                         Froid
+                    </button>
+
+                    <button
+                        className={filter === "chaud" ? "filter-btn active" : "filter-btn"}
+                        onClick={() => setFilter("chaud")}
+                    >
+                        Chaud
                     </button>
 
                     <button
