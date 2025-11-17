@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 import db from './db.js';
 import { router as apiRouter } from './apiRouter.js';
@@ -8,9 +9,11 @@ import { createTables, insererDrones } from './utils/ajoutDonnes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const app = express();
 const PORT = 8080;
+
+// CORS policy
+app.use(cors())
 
 // Middleware
 

@@ -10,6 +10,7 @@ export default function AppRouter() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/listProducts" element={<DroneList />} />
+            <Route path="/product/:id" element={<DronePage />} />
             <Route path="/panier" element={<Panier />} />
             <Route path="/connexion" element={<Connexion />} />
             <Route path="/products" element={<DronePage/>} />

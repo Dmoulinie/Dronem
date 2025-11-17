@@ -1,59 +1,45 @@
-import { NavLink } from "react-router-dom";
 import "./droneList.css";
+import { getAllDrones } from "../../services/api";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function DroneList() {
+    const [allDrones, setAllDrones] = useState([]);
+
+    useEffect(() => {
+        getAllDrones().then(setAllDrones).catch(console.error);
+    }, []);
+
     return (
         <>
             <div className={"title-text-droneList"}>
                 <h1>Nos choix de drones</h1>
                 <small className={"title-small-text-droneList"}>
-                    Nous vous proposons différents types de drones de livraisons. <br></br>
+                    Nous vous proposons différents types de drones de livraisons. <br />
                     Voici quelques-unes de nos sélections les plus populaires :
                 </small>
             </div>
+
             <div className={"cards-drone"}>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="DJI Mavic 3"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">DJI Mavic 3</h2>
-                        <p className="card-drone-description">Caméra Hasselblad 4/3</p>
-                    </div>
-                </div>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="DJI Air 2S"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">DJI Air 2S</h2>
-                        <p className="card-drone-description">Capteur 1 pouce 5.4K</p>
-                    </div>
-                </div>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="DJI Mini 3 Pro"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">DJI Mini 3 Pro</h2>
-                        <p className="card-drone-description">Ultra léger & compact</p>
-                    </div>
-                </div>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="Parrot Anafi"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">Parrot Anafi</h2>
-                        <p className="card-drone-description">4K HDR Professionnel</p>
-                    </div>
-                </div>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="Autel EVO II"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">Autel EVO II</h2>
-                        <p className="card-drone-description">Caméra 8K</p>
-                    </div>
-                </div>
-                <div className={"card-drone"}>
-                    <img src="../../../public/drones/Drone1.png" className={"card-drone-img"} alt="Skydio 2"></img>
-                    <div className="card-drone-content">
-                        <h2 className="card-drone-title">Skydio 2</h2>
-                        <p className="card-drone-description">IA & Autonomie</p>
-                    </div>
-                </div>
+                {allDrones.map((drone) => (
+                    <NavLink
+                        key={drone.id}
+                        to={`/product/${drone.id}`}
+                        className={"card-drone"}
+                    >
+                        <img
+                            src={`http://localhost:8080/public/${drone.image_path}`}
+                            className={"card-drone-img"}
+                            alt={drone.name}
+                        />
+
+                        <div className={"card-drone-content"}>
+                            <h2 className={"card-drone-title"}>{drone.name}</h2>
+                            <p className={""}>{drone.price} Francs</p>
+                            <p className={"card-drone-model"}>{drone.model}</p>
+                        </div>
+                    </NavLink>
+                ))}
             </div>
         </>
     );
