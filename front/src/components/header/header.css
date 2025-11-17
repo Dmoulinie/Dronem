@@ -125,3 +125,123 @@
   opacity: 0.85;
   cursor: pointer;
 }
+
+
+
+
+/* =========================================================
+   📱📱 Responsive Sidebar — simple et propre
+   ========================================================= */
+
+
+/* =========================================================
+   💻 Laptop 15 pouces (1280px – 1536px)
+   ========================================================= */
+@media (max-width: 1536px) and (min-width: 1280px) {
+
+    .presentation-text {
+        font-size: 1rem;
+        letter-spacing: 0.35rem;
+        max-width: 240px;
+        margin-top: 30px;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        margin: 20px 0;
+    }
+
+    .nav-links {
+        margin: 30px 0;
+    }
+
+    .logo img {
+        width: 180px; /* légèrement réduit */
+    }
+
+    .cart,
+    .user-icon,
+    .user-link {
+        max-width: 50px;
+        height: 50px;
+    }
+
+    .userAndCart {
+        padding: 15px 10px 0 0;
+    }
+}
+
+/* ---- TABLETTES (≤ 1024px) ---- */
+@media (max-width: 1024px) {
+    .presentation-text {
+        font-size: 0.95rem;
+        letter-spacing: 0.35rem;
+        max-width: 220px;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        margin: 20px 0;
+    }
+
+    .cart,
+    .user-icon,
+    .user-link {
+        max-width: 50px;
+        height: 50px;
+    }
+}
+
+/* ---- TÉLÉPHONES LARGE (≤ 768px) ---- */
+@media (max-width: 768px) {
+    .presentation-text {
+        font-size: 0.85rem;
+        letter-spacing: 0.25rem;
+        max-width: 200px;
+        line-height: 1.8;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+        margin: 18px 0;
+    }
+
+    .cart,
+    .user-icon,
+    .user-link {
+        max-width: 40px;
+        height: 40px;
+    }
+
+    .logo img {
+        width: 140px;
+    }
+}
+
+/* ---- PETITS TÉLÉPHONES (≤ 480px) ---- */
+@media (max-width: 480px) {
+    .presentation-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.15rem;
+        max-width: 180px;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .cart,
+    .user-icon,
+    .user-link {
+        max-width: 32px;
+        height: 32px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+}

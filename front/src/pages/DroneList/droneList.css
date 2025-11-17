@@ -137,7 +137,7 @@
     background: rgba(113, 182, 0, 0.6);
     border-radius: 10px;
     z-index: 1;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 /* ---------- POSITIONS ---------- */
