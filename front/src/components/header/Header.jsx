@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./header.css";
-import emptyCart from "../../assets/empty-cart.svg";
-import cartWithItems from "../../assets/cart-with-items.svg";
-import userIcon from "../../assets/user-icon.svg";
+import emptyCart from "../../assets/empty-cart.png";
+import cartWithItems from "../../assets/cart-with-items.png";
+import userIcon from "../../assets/user-icon.png";
 
 export default function Header() {
 
