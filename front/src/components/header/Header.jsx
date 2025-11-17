@@ -45,7 +45,10 @@ export default function Header() {
                 {/* BOTTOM - User + Cart */}
                 <div className="sidebar-bottom userAndCart">
 
-                    <img src={userIcon} className="user-icon" alt="User profile" />
+                    <NavLink to="/connexion" className="user-link">
+                        <img src={userIcon}  className="user-icon" alt="User profile" />
+                    </NavLink>
+                   
 
                     {isCartEmpty ? (
                         <img src={emptyCart} className="cart" alt="Empty cart" />
