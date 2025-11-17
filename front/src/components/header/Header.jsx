@@ -3,7 +3,7 @@ import "./header.css";
 import emptyCart from "../../assets/empty-cart.png";
 import cartWithItems from "../../assets/cart-with-items.png";
 import userIcon from "../../assets/user-icon.png";
-import Panier from "../Panier/Panier.jsx";
+import Panier from "../panier/panier.jsx";
 import { useState } from "react";
 
 export default function Header() {
