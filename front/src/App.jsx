@@ -1,11 +1,13 @@
-// src/App.jsx
 import Layout from "./components/Layout";
 import AppRouter from "./router/AppRouter";
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
     return (
-        <Layout>
-            <AppRouter />
-        </Layout>
+        <AuthProvider>
+            <Layout>
+                <AppRouter />
+            </Layout>
+        </AuthProvider>
     );
 }
