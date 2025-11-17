@@ -8,7 +8,9 @@ export default function AppRouter() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/listProducts" element={<DroneList />} />
-            <Route path="/products" element={<DronePage/>} />
+
+            {/* Page produit avec ID dynamique */}
+            <Route path="/product/:id" element={<DronePage />} />
         </Routes>
     );
 }
