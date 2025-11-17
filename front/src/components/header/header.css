@@ -103,3 +103,29 @@
     opacity: 0.85;
     cursor: pointer;
 }
+
+
+.user-logged {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-family: "Rubik", sans-serif;
+}
+
+.logout-btn {
+    border: none;
+    background: none;
+    color: #c0392b;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
