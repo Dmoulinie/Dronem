@@ -5,10 +5,17 @@ import { NavLink } from "react-router-dom";
 
 export default function DroneList() {
     const [allDrones, setAllDrones] = useState([]);
+    const [filter, setFilter] = useState("all");
 
     useEffect(() => {
         getAllDrones().then(setAllDrones).catch(console.error);
     }, []);
+
+    // Filtrage
+    const filteredDrones = allDrones.filter((drone) => {
+        if (filter === "all") return true;
+        return drone.category?.toLowerCase() === filter;
+    });
 
     return (
         <>
@@ -20,8 +27,42 @@ export default function DroneList() {
                 </small>
             </div>
 
+            <div className="filter-group">
+                <button
+                    className={filter === "all" ? "filter-btn active" : "filter-btn"}
+                    onClick={() => setFilter("all")}
+                >
+                    Tous
+                </button>
+
+                <button
+                    className={filter === "chaud" ? "filter-btn active" : "filter-btn"}
+                    onClick={() => setFilter("chaud")}
+                >
+                    Chaud
+                </button>
+
+                <button
+                    className={filter === "froid" ? "filter-btn active" : "filter-btn"}
+                    onClick={() => setFilter("froid")}
+                >
+                    Froid
+                </button>
+
+                <button
+                    className={filter === "boisson" ? "filter-btn active" : "filter-btn"}
+                    onClick={() => setFilter("boisson")}
+                >
+                    Boisson
+                </button>
+
+                {/* Le slider animé */}
+                <span className={`filter-slider ${filter}`}></span>
+            </div>
+
+            {/* ---- CARTES ---- */}
             <div className={"cards-drone"}>
-                {allDrones.map((drone) => (
+                {filteredDrones.map((drone) => (
                     <NavLink
                         key={drone.id}
                         to={`/product/${drone.id}`}
@@ -35,7 +76,7 @@ export default function DroneList() {
 
                         <div className={"card-drone-content"}>
                             <h2 className={"card-drone-title"}>{drone.name}</h2>
-                            <p className={""}>{drone.price} Francs</p>
+                            <p>{drone.price} Francs</p>
                             <p className={"card-drone-model"}>{drone.model}</p>
                         </div>
                     </NavLink>
