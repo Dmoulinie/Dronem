@@ -1,12 +1,33 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./panier.css";
 
-const Panier = ({ open, onClose }) => {
-    const [items, setItems] = useState([
-        { id: 1, name: "Produit A", price: 1490, quantity: 1, img: "/img/productA.jpg" },
-        { id: 2, name: "Produit B", price: 990, quantity: 2, img: "/img/productB.jpg" }
-    ]);
+import { getCartByUserId } from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
 
+const Panier = ({ open, onClose }) => {
+    const { user } = useAuth(); // 🔥 Récupère l'utilisateur connecté
+    const [items, setItems] = useState([]);
+
+    // Charger le panier quand on ouvre le component
+    useEffect(() => {
+        if (!open || !user?.id) return;
+
+        const loadCart = async () => {
+            try {
+                const cart = await getCartByUserId(user.id);
+
+                // Ton backend retourne quoi ?
+                // Ici j'assume : { items: [ ... ] }
+                setItems(cart.items || []);
+            } catch (err) {
+                console.error("❌ Erreur récupération panier :", err);
+            }
+        };
+
+        loadCart();
+    }, [open, user]);
+
+    // Modifier quantité
     const updateQuantity = (id, delta) => {
         setItems(prev =>
             prev.map(item =>
@@ -32,6 +53,7 @@ const Panier = ({ open, onClose }) => {
         setItems(prev => prev.filter(item => item.id !== id));
     };
 
+    // TOTAL CFP sans virgule
     const total = useMemo(
         () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
         [items]
@@ -39,12 +61,14 @@ const Panier = ({ open, onClose }) => {
 
     return (
         <>
-            {/* ----- OVERLAY (fond assombri) ----- */}
-            <div className={`panier-overlay ${open ? "show" : ""}`} onClick={onClose} />
+            {/* Overlay sombre */}
+            <div
+                className={`panier-overlay ${open ? "show" : ""}`}
+                onClick={onClose}
+            />
 
-            {/* ----- SLIDE PANEL ----- */}
+            {/* Slide panel */}
             <div className={`panier-slide-left ${open ? "open" : ""}`}>
-
                 <button className="close-left-btn" onClick={onClose}>✖</button>
 
                 <div className="panier-container">
@@ -57,11 +81,12 @@ const Panier = ({ open, onClose }) => {
                     <ul className="panier-list">
                         {items.map(item => (
                             <li key={item.id} className="panier-item">
-                                <img src={item.img} alt={item.name} className="panier-item-img" />
+                                <img src={item.image || item.img} alt={item.name} className="panier-item-img" />
 
                                 <div className="panier-item-info">
                                     <h3>{item.name}</h3>
-                                    <p className="price">{(item.price / 100).toFixed(2)} €</p>
+
+                                    <p className="price">{item.price} CFP</p>
 
                                     <div className="quantity-controls">
                                         <button onClick={() => updateQuantity(item.id, -1)}>−</button>
@@ -80,7 +105,7 @@ const Panier = ({ open, onClose }) => {
 
                                 <div className="panier-item-actions">
                                     <p className="subtotal">
-                                        Sous-total : {((item.price * item.quantity) / 100).toFixed(2)} €
+                                        Sous-total : {item.price * item.quantity} CFP
                                     </p>
 
                                     <button className="remove-btn" onClick={() => removeItem(item.id)}>
@@ -91,12 +116,13 @@ const Panier = ({ open, onClose }) => {
                         ))}
                     </ul>
 
-                    <div className="panier-footer">
-                        <h3>Total : {(total / 100).toFixed(2)} €</h3>
-                        <button className="checkout-btn">Passer à la caisse</button>
-                    </div>
+                    {items.length > 0 && (
+                        <div className="panier-footer">
+                            <h3>Total : {total} CFP</h3>
+                            <button className="checkout-btn">Passer à la caisse</button>
+                        </div>
+                    )}
                 </div>
-
             </div>
         </>
     );
