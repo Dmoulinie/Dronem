@@ -9,8 +9,8 @@
 }
 
 .card-drone {
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    height: 300px;
     padding: 10px;
     flex: 0 0 auto;
     display: flex;
@@ -150,14 +150,15 @@
     background: rgba(113, 182, 0, 0.6);
 }
 
-.filter-slider.chaud {
-    transform: translateX(100%);
-    background: #ff6900;
-}
 
 .filter-slider.froid {
-    transform: translateX(200%);
+    transform: translateX(100%);
     background: #1daee6;
+}
+
+.filter-slider.chaud {
+    transform: translateX(200%);
+    background: #ff6900;
 }
 
 .filter-slider.boisson {
