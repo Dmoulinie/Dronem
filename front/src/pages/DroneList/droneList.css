@@ -30,7 +30,6 @@
 }
 
 .cards-drone {
-    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -93,4 +92,71 @@
 .card-drone-model {
     font-size :0.8rem;
     opacity: 0.5;
+}
+
+
+/* ---------- GROUPE DES BOUTONS ---------- */
+/* ---------- GROUPE COMPACT ---------- */
+.filter-group {
+    position: relative;
+    display: inline-flex;
+    background: rgba(232, 232, 232, 0.47);
+    padding: 3px;
+    border-radius: 12px;
+    gap: 0;
+    margin-left: 115px;      /* aligné à gauche */
+    margin-top: 35px;    /* un petit espace au-dessus */
+    margin-bottom: 5px;    /* plus de marge en dessous */
+
+}
+
+/* ---------- BOUTONS ---------- */
+.filter-group .filter-btn {
+    width: 80px;
+    padding: 10px 22px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: color 0.25s ease;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.filter-group .filter-btn.active {
+    color: white;
+}
+
+/* ---------- SLIDER ANIMÉ ---------- */
+.filter-slider {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    width: 80px;
+    background: rgba(113, 182, 0, 0.6);
+    border-radius: 10px;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* ---------- POSITIONS ---------- */
+.filter-slider.all {
+    transform: translateX(0%);
+}
+
+.filter-slider.chaud {
+    transform: translateX(100%);
+    background: #ff6900;
+}
+
+.filter-slider.froid {
+    transform: translateX(200%);
+    background: #1daee6;
+
+}
+
+.filter-slider.boisson {
+    transform: translateX(300%);
+    background: #7b00ff;
 }
