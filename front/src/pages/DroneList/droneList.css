@@ -1,42 +1,11 @@
+/* ======================= */
+/*     CARTES DRONES       */
+/* ======================= */
+
 .card-drone-img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-}
-
-.card-drone {
-    width: 200px;
-    height: 250px;
-    margin: 10px;
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-drone-content {
-    padding: 10px 0 0 0 ;
-    text-align: left;
-}
-
-.card-drone-title {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.card-drone-description {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.cards-drone {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    gap:30px
 }
 
 .card-drone {
@@ -60,11 +29,41 @@
     cursor: pointer;
 }
 
-
 .cards-drone a {
     text-decoration: none;
     color: inherit;
 }
+
+.card-drone-content {
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.card-drone-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-drone-model {
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+/* Container cartes aligné */
+.cards-drone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 1000px;
+    margin-top: 10px;
+    gap: 30px;
+}
+
+
+/* ======================= */
+/*       TITRE PAGE        */
+/* ======================= */
 
 .title-text-droneList {
     display: flex;
@@ -75,9 +74,8 @@
     margin: 0 auto;
     padding: 2rem 0 0 0;
     max-width: 800px;
-    font-family:Arial, Helvetica, sans-serif;
     font-size: 16px;
-    color:rgb(58, 53, 53);
+    color: rgb(58, 53, 53);
 }
 
 .title-text-droneList h1 {
@@ -86,34 +84,42 @@
 
 .title-text-droneList small {
     font-size: 0.9rem;
-    color: #bbb
-}
-
-.card-drone-model {
-    font-size :0.8rem;
-    opacity: 0.5;
+    color: #bbb;
 }
 
 
-/* ---------- GROUPE DES BOUTONS ---------- */
-/* ---------- GROUPE COMPACT ---------- */
+/* ======================= */
+/*  CONTAINER GLOBAL       */
+/* ======================= */
+
+.drone-list-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* ======================= */
+/*        FILTRES          */
+/* ======================= */
+
 .filter-group {
     position: relative;
     display: inline-flex;
     background: rgba(232, 232, 232, 0.47);
     padding: 3px;
     border-radius: 12px;
+    margin-bottom: 20px;
     gap: 0;
-    margin-left: 115px;      /* aligné à gauche */
-    margin-top: 35px;    /* un petit espace au-dessus */
-    margin-bottom: 5px;    /* plus de marge en dessous */
-
 }
 
-/* ---------- BOUTONS ---------- */
+/* Boutons */
 .filter-group .filter-btn {
     width: 80px;
-    padding: 10px 22px;
+    padding: 10px 20px;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -128,21 +134,20 @@
     color: white;
 }
 
-/* ---------- SLIDER ANIMÉ ---------- */
+/* Slider animé */
 .filter-slider {
     position: absolute;
-    top: 5px;
-    bottom: 5px;
+    top: 3px;
+    bottom: 3px;
     width: 80px;
-    background: rgba(113, 182, 0, 0.6);
     border-radius: 10px;
     z-index: 1;
     transition: all 0.3s ease;
 }
 
-/* ---------- POSITIONS ---------- */
 .filter-slider.all {
     transform: translateX(0%);
+    background: rgba(113, 182, 0, 0.6);
 }
 
 .filter-slider.chaud {
@@ -153,7 +158,6 @@
 .filter-slider.froid {
     transform: translateX(200%);
     background: #1daee6;
-
 }
 
 .filter-slider.boisson {
