@@ -1,0 +1,127 @@
+/* RESET léger pour cette page si besoin */
+.auth-page, .auth-card, .auth-label, .auth-input {
+    box-sizing: border-box;
+}
+
+/* Conteneur général de la page connexion */
+.auth-page {
+    margin: 60px 80px;
+    background: #f6f6f0;
+    padding: 20px 25px;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: "Rubik", sans-serif;
+}
+
+
+/* ----- SWITCH LOGIN / REGISTER ----- */
+
+.auth-switch-container {
+    margin-bottom: 20px;
+}
+
+.auth-switch {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+/* On cache visuellement les radios (pour enlever les ronds) */
+.auth-switch input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Les deux options (Se connecter / S'inscrire) */
+.auth-switch label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 32px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #555;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* On cache visuellement les radios mais on les laisse cliquables */
+.auth-switch input[type="radio"] {
+    accent-color: #75c115;
+}
+
+/* Style de l’option active */
+.auth-switch label.active {
+    background-color: #75c115;
+    color: #fff;
+}
+
+/* Carte du formulaire */
+.auth-card {
+    margin-top: 10px;
+    background: #ffffff;
+    padding: 20px 22px;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Labels & inputs */
+.auth-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    font-family: "Rubik", sans-serif;
+    outline: none;
+    background-color: #ffffff;
+}
+
+.auth-input:focus {
+    border-color: #75c115;
+    box-shadow: 0 0 0 2px rgba(117, 193, 21, 0.2);
+}
+
+/* Bouton dans le style de .btn-panier */
+
+.auth-button {
+    background-color: #75c115;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(37, 175, 0, 0.25);
+    margin-top: 5px;
+}
+
+.auth-button:hover {
+    background-color: #76b32e;
+    box-shadow: 0 6px 14px rgba(58, 189, 4, 0.35);
+    transform: translateY(-2px);
+}
+
+.auth-button:active {
+    transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .auth-page {
+        margin: 30px 15px;
+        padding: 15px 18px;
+    }
+}
