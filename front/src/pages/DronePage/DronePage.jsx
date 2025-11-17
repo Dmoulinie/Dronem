@@ -2,7 +2,7 @@ import "./dronePage.css";
 
 export default function DronePage() {
     return (
-        <main className="content">
+        <main className="content-product">
             <h1>BougnaFly</h1>
 
             {/* Conteneur texto + image */}
@@ -18,11 +18,14 @@ export default function DronePage() {
                         <p><span>Prix :</span> 81 900</p>
                     </div>
 
-                    <p>
+                    <label id={"description-label"}>Description : </label>
+                    <p id={"description"}>
                         L'âme du Caillou dans un drone. Cuit à la vapeur de coco et piloté à la main
                         en feuilles de bananier, le BougnaFly allie tradition et technologie.
                         Il ne vole pas : il plane avec respect.
                     </p>
+                    <br/>
+                    <button className={"btn-panier"}> Ajouter au panier </button>
                 </div>
 
                 {/* Image à droite */}

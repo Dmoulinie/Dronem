@@ -23,7 +23,11 @@
     font-size: 1.2rem;
     color:black;
     font-family:"Tinos", serif;
+    padding-top:70px;
     margin: 0 25px 70px 25px;
+    display: flex;
+    justify-content: center;  /* centre horizontalement */
+    align-items: center;       /* centre verticalement */
 }
 
 
@@ -31,8 +35,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 100px;
 }
 
 .nav-link {
@@ -49,4 +52,32 @@
     text-decoration-color: #007BFF;
     transition: 0.3s ease;
 
+}
+
+.userAndCart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px 0px 0px;
+}
+
+.cart {
+    max-width: 60px;
+}
+
+
+.user-icon {
+    max-width: 40px;
+}
+
+.cart:hover,
+.user-icon:hover {
+    transform: scale(1.15);
+    opacity: 0.85;
+    cursor:pointer;
+}
+
+.cart,
+.user-icon {
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
