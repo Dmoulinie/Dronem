@@ -1,0 +1,151 @@
+/* Container global */
+.panier-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+/* Titre */
+.panier-title {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Liste */
+.panier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item */
+.panier-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: #f9f9fc;
+  border: 1px solid #e0e0e0;
+}
+
+.panier-item-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+/* Informations produit */
+.panier-item-info {
+  flex: 1;
+}
+
+.price {
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+/* Boutons quantité */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  border: none;
+  background: #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.quantity-controls button:hover {
+  background: #ccc;
+}
+
+/* Actions */
+.panier-item-actions {
+  text-align: right;
+}
+
+.subtotal {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.remove-btn {
+  padding: 6px 12px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #c0392b;
+}
+
+/* Footer */
+.panier-footer {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.checkout-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #27ae60;
+}
+
+/* Panier vide */
+.panier-empty {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 20px 0;
+  opacity: 0.7;
+}
+
+.quantity-input {
+  width: 40px; /* 🔥 plus petit, idéal */
+  height: 28px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  padding: 0;
+  outline: none;
+  appearance: textfield;
+}
+/* 🔥 enlève les flèches sur Chrome, Edge, Safari */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-input:focus {
+  border-color: #888;
+}
