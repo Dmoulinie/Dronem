@@ -14,6 +14,7 @@ apiRouter.get('/drones/getDroneById/:id', droneCtrl.getDroneById);
 
 apiRouter.get('/carts/getCartById/:id', cartCtrl.getCartById);
 apiRouter.post('/carts/addToCart', cartCtrl.addToCart);
+apiRouter.post('/carts/removeFromCart', cartCtrl.removeFromCart);
 
 apiRouter.post('/users/register', userCtrl.register)
 apiRouter.post('/users/login', userCtrl.login)

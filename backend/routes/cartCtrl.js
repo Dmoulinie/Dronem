@@ -89,7 +89,35 @@ function getCartById(req, res) {
   );
 }
 
+function removeFromCart(req, res) {
+  const { id_user, id_drone } = req.body;
 
-const cartCtrl = { addToCart, getCartById };
+  const userId = Number(id_user);
+  const droneId = Number(id_drone);
+
+  if (!Number.isInteger(userId) || !Number.isInteger(droneId)) {
+    return res.status(400).json({ error: 'id_user et id_drone doivent être des entiers' });
+  }
+
+  db.run(
+    'DELETE FROM cart WHERE id_user = ? AND id_drone = ?',
+    [userId, droneId],
+    function (err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      return res.status(200).json({
+        id_user: userId,
+        id_drone: droneId,
+        deleted: this.changes > 0,   // true si quelque chose a été supprimé
+      });
+    }
+  );
+}
+
+
+
+const cartCtrl = { addToCart, getCartById , removeFromCart};
 
 export default cartCtrl;
