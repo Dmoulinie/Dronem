@@ -38,11 +38,9 @@ export default function Connexion() {
                 });
             }
 
-            // 🔥 AuthContext : stocker user + token
             login(response.user, response.token);
 
             navigate("/");
-
         } catch (err) {
             setError(err.message || "Erreur inconnue");
         } finally {
@@ -51,47 +49,18 @@ export default function Connexion() {
     };
 
     return (
-      <>
-                  <div className="auth-header">
+        <>
+            <div className="auth-header">
                 <h1 className="auth-title">Bienvenue sur votre espace Dronem</h1>
                 <small className="auth-subtitle">
                     Gérez votre compte, suivez vos commandes et profitez de nos services en toute simplicité.
                 </small>
             </div>
-        <div className="auth-page">
-            <div className="auth-switch-container">
-                <div className="auth-switch">
-                    <label className={mode === "login" ? "active" : ""}>
-                        <input
-                            type="radio"
-                            name="mode"
-                            value="login"
-                            checked={mode === "login"}
-                            onChange={() => setMode("login")}
-                        />
-                        Se connecter
-                    </label>
 
-                    <label className={mode === "register" ? "active" : ""}>
-                        <input
-                            type="radio"
-                            name="mode"
-                            value="register"
-                            checked={mode === "register"}
-                            onChange={() => setMode("register")}
-                        />
-                        S'inscrire
-                    </label>
-                </div>
-            </div>
-
-            <div className="auth-card">
-                <form onSubmit={handleSubmit}>
-                    {mode === "register" && (
-                        <>
-                            <label className="auth-label" htmlFor="firstname">
-                                Prénom :
-                            </label>
+            <div className="auth-page">
+                <div className="auth-switch-container">
+                    <div className="auth-switch">
+                        <label className={mode === "login" ? "active" : ""}>
                             <input
                                 type="radio"
                                 name="mode"
@@ -102,37 +71,7 @@ export default function Connexion() {
                             Se connecter
                         </label>
 
-                            <label className="auth-label" htmlFor="name">
-                                Nom :
-                            </label>
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                className="auth-input"
-                                placeholder="Votre nom"
-                                required
-                            />
-                        </>
-                    )}
-
-                    <label className="auth-label" htmlFor="username">
-                        Nom d'utilisateur :
-                    </label>
-                    <input
-                        id="username"
-                        name="username"
-                        type="text"
-                        className="auth-input"
-                        placeholder="Nom d'utilisateur"
-                        required
-                    />
-
-                    {mode === "register" && (
-                        <>
-                            <label className="auth-label" htmlFor="email">
-                                Email :
-                            </label>
+                        <label className={mode === "register" ? "active" : ""}>
                             <input
                                 type="radio"
                                 name="mode"
@@ -140,33 +79,94 @@ export default function Connexion() {
                                 checked={mode === "register"}
                                 onChange={() => setMode("register")}
                             />
-                        </>
-                    )}
+                            S'inscrire
+                        </label>
+                    </div>
+                </div>
 
-                    <label className="auth-label" htmlFor="password">
-                        Mot de passe :
-                    </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        className="auth-input"
-                        placeholder="Mot de passe"
-                        required
-                    />
+                <div className="auth-card">
+                    <form onSubmit={handleSubmit}>
+                        {mode === "register" && (
+                            <>
+                                <label className="auth-label" htmlFor="firstname">
+                                    Prénom :
+                                </label>
+                                <input
+                                    id="firstname"
+                                    name="firstname"
+                                    type="text"
+                                    className="auth-input"
+                                    placeholder="Votre prénom"
+                                    required
+                                />
 
-                    {error && (
-                        <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>
-                    )}
+                                <label className="auth-label" htmlFor="name">
+                                    Nom :
+                                </label>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    className="auth-input"
+                                    placeholder="Votre nom"
+                                    required
+                                />
+                            </>
+                        )}
 
-                    <button type="submit" className="auth-button" disabled={loading}>
-                        {loading
-                            ? "Veuillez patienter..."
-                            : mode === "login"
-                                ? "Se connecter"
-                                : "Créer mon compte"}
-                    </button>
-                </form>
+                        <label className="auth-label" htmlFor="username">
+                            Nom d'utilisateur :
+                        </label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            className="auth-input"
+                            placeholder="Nom d'utilisateur"
+                            required
+                        />
+
+                        {mode === "register" && (
+                            <>
+                                <label className="auth-label" htmlFor="email">
+                                    Email :
+                                </label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    className="auth-input"
+                                    placeholder="Votre email"
+                                    required
+                                />
+                            </>
+                        )}
+
+                        <label className="auth-label" htmlFor="password">
+                            Mot de passe :
+                        </label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            className="auth-input"
+                            placeholder="Mot de passe"
+                            required
+                        />
+
+                        {error && (
+                            <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>
+                        )}
+
+                        <button type="submit" className="auth-button" disabled={loading}>
+                            {loading
+                                ? "Veuillez patienter..."
+                                : mode === "login"
+                                    ? "Se connecter"
+                                    : "Créer mon compte"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
     );

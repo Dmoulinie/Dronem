@@ -138,7 +138,7 @@ const Panier = ({ open, onClose }) => {
                         <div className="panier-footer">
                             <h3>Total : {total} CFP</h3>
                             <button className="checkout-btn">
-                                Passer à la caisse
+                                Passer au paiement
                             </button>
                         </div>
                     )}
