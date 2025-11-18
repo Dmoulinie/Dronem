@@ -51,6 +51,13 @@ export default function Connexion() {
     };
 
     return (
+      <>
+                  <div className="auth-header">
+                <h1 className="auth-title">Bienvenue sur votre espace Dronem</h1>
+                <small className="auth-subtitle">
+                    Gérez votre compte, suivez vos commandes et profitez de nos services en toute simplicité.
+                </small>
+            </div>
         <div className="auth-page">
             <div className="auth-switch-container">
                 <div className="auth-switch">
@@ -86,13 +93,14 @@ export default function Connexion() {
                                 Prénom :
                             </label>
                             <input
-                                id="firstname"
-                                name="firstname"
-                                type="text"
-                                className="auth-input"
-                                placeholder="Votre prénom"
-                                required
+                                type="radio"
+                                name="mode"
+                                value="login"
+                                checked={mode === "login"}
+                                onChange={() => setMode("login")}
                             />
+                            Se connecter
+                        </label>
 
                             <label className="auth-label" htmlFor="name">
                                 Nom :
@@ -126,12 +134,11 @@ export default function Connexion() {
                                 Email :
                             </label>
                             <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                className="auth-input"
-                                placeholder="Votre email"
-                                required
+                                type="radio"
+                                name="mode"
+                                value="register"
+                                checked={mode === "register"}
+                                onChange={() => setMode("register")}
                             />
                         </>
                     )}
@@ -161,6 +168,6 @@ export default function Connexion() {
                     </button>
                 </form>
             </div>
-        </div>
+        </>
     );
 }
