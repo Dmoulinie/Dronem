@@ -1,37 +1,76 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./panier.css";
 
+import {getCartByUserId, getDroneById, addToCart, removeFromCart} from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
+import deleteIcon from "../../assets/delete_icon.svg";
+
 const Panier = ({ open, onClose }) => {
-    const [items, setItems] = useState([
-        { id: 1, name: "Produit A", price: 1490, quantity: 1, img: "/img/productA.jpg" },
-        { id: 2, name: "Produit B", price: 990, quantity: 2, img: "/img/productB.jpg" }
-    ]);
+    const { user } = useAuth();
+    const [items, setItems] = useState([]);
 
-    const updateQuantity = (id, delta) => {
-        setItems(prev =>
-            prev.map(item =>
-                item.id === id
-                    ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-                    : item
+    // Charger le panier à l'ouverture
+    useEffect(() => {
+        if (!open || !user?.id) return;
+
+        const loadCart = async () => {
+            try {
+                const cart = await getCartByUserId(user.id);
+
+                const enriched = await Promise.all(
+                    cart.map(async (entry) => {
+                        const drone = await getDroneById(entry.id_drone);
+
+                        return {
+                            id: entry.id_drone,
+                            quantity: Number(entry.quantity),
+                            name: drone.name,
+                            price: drone.price,
+                            image: `http://localhost:8080/public/${drone.image_path}`,
+                        };
+                    })
+                );
+
+                setItems(enriched);
+            } catch (err) {
+                console.error("❌ Erreur chargement panier :", err);
+            }
+        };
+
+        loadCart();
+    }, [open, user]);
+
+    // Modifier quantité localement
+    const updateQuantity = async (id, delta) => {
+        const item = items.find((i) => i.id === id);
+        if (!item) return;
+
+        // update backend
+        await addToCart(user.id, id, delta);
+
+        // update local
+        setItems((prev) =>
+            prev.map((i) =>
+                i.id === id
+                    ? { ...i, quantity: Math.max(1, i.quantity + delta) }
+                    : i
             )
         );
     };
 
-    const setQuantityDirect = (id, value) => {
-        const parsed = Number(value);
-        setItems(prev =>
-            prev.map(item =>
-                item.id === id
-                    ? { ...item, quantity: parsed > 0 ? parsed : 1 }
-                    : item
-            )
-        );
+    // suppression réelle
+    const removeItem = async (id) => {
+        const item = items.find((i) => i.id === id);
+        if (!item) return;
+
+        // 🔥 supprimer tout d'un coup
+        await removeFromCart(user.id, id);
+
+        // update local
+        setItems((prev) => prev.filter((i) => i.id !== id));
     };
 
-    const removeItem = id => {
-        setItems(prev => prev.filter(item => item.id !== id));
-    };
-
+    // Total CFP
     const total = useMemo(
         () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
         [items]
@@ -39,12 +78,12 @@ const Panier = ({ open, onClose }) => {
 
     return (
         <>
-            {/* ----- OVERLAY (fond assombri) ----- */}
-            <div className={`panier-overlay ${open ? "show" : ""}`} onClick={onClose} />
+            <div
+                className={`panier-overlay ${open ? "show" : ""}`}
+                onClick={onClose}
+            />
 
-            {/* ----- SLIDE PANEL ----- */}
             <div className={`panier-slide-left ${open ? "open" : ""}`}>
-
                 <button className="close-left-btn" onClick={onClose}>✖</button>
 
                 <div className="panier-container">
@@ -55,13 +94,13 @@ const Panier = ({ open, onClose }) => {
                     )}
 
                     <ul className="panier-list">
-                        {items.map(item => (
+                        {items.map((item) => (
                             <li key={item.id} className="panier-item">
-                                <img src={item.img} alt={item.name} className="panier-item-img" />
+                                <img src={item.image} alt={item.name} className="panier-item-img" />
 
                                 <div className="panier-item-info">
                                     <h3>{item.name}</h3>
-                                    <p className="price">{(item.price / 100).toFixed(2)} €</p>
+                                    <p className="price">{item.price} CFP</p>
 
                                     <div className="quantity-controls">
                                         <button onClick={() => updateQuantity(item.id, -1)}>−</button>
@@ -71,32 +110,39 @@ const Panier = ({ open, onClose }) => {
                                             min="1"
                                             className="quantity-input"
                                             value={item.quantity}
-                                            onChange={e => setQuantityDirect(item.id, e.target.value)}
+                                            onChange={(e) =>
+                                                updateQuantity(item.id, Number(e.target.value) - item.quantity)
+                                            }
                                         />
 
                                         <button onClick={() => updateQuantity(item.id, +1)}>+</button>
                                     </div>
+                                    <p className="subtotal">
+                                        Sous-total : {item.price * item.quantity} CFP
+                                    </p>
                                 </div>
 
                                 <div className="panier-item-actions">
-                                    <p className="subtotal">
-                                        Sous-total : {((item.price * item.quantity) / 100).toFixed(2)} €
-                                    </p>
-
-                                    <button className="remove-btn" onClick={() => removeItem(item.id)}>
-                                        Supprimer
-                                    </button>
+                                    <img
+                                        src={deleteIcon}
+                                        alt="Supprimer"
+                                        className="trash-icon"
+                                        onClick={() => removeItem(item.id)}
+                                    />
                                 </div>
                             </li>
                         ))}
                     </ul>
 
-                    <div className="panier-footer">
-                        <h3>Total : {(total / 100).toFixed(2)} €</h3>
-                        <button className="checkout-btn">Passer à la caisse</button>
-                    </div>
+                    {items.length > 0 && (
+                        <div className="panier-footer">
+                            <h3>Total : {total} CFP</h3>
+                            <button className="checkout-btn">
+                                Passer à la caisse
+                            </button>
+                        </div>
+                    )}
                 </div>
-
             </div>
         </>
     );

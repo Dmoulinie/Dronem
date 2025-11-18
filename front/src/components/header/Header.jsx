@@ -3,8 +3,9 @@ import "./header.css";
 import emptyCart from "../../assets/empty-cart.png";
 import cartWithItems from "../../assets/cart-with-items.png";
 import userIcon from "../../assets/user-icon.png";
-import Panier from "../panier/panier.jsx";
+import Panier from "../panier/Panier.jsx";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Header() {
 
@@ -15,6 +16,7 @@ export default function Header() {
     };
 
     const isCartEmpty = true; // géré plus tard
+    const { user, logout } = useAuth();
 
     return (
         <>
@@ -46,23 +48,34 @@ export default function Header() {
                 {/* BOTTOM */}
                 <div className="sidebar-bottom userAndCart">
 
-                    <NavLink to="/connexion" className="user-link">
-                        <img src={userIcon} className="user-icon" alt="User profile" />
-                    </NavLink>
+                    {!user ? (
+                        <NavLink to="/connexion" className="user-link">
+                            <img src={userIcon} className="user-icon" alt="User profile" />
+                        </NavLink>
+                    ) : (
+                        <div className="user-logged">
+                            <span className="user-name">
+                                Bonjour, {user.firstname || user.username}
+                            </span>
+                            <button className="logout-btn" onClick={logout}>
+                                Déconnexion
+                            </button>
+                        </div>
+                    )}
 
-                    {/* ---- Icône Panier ---- */}
                     <img
                         src={isCartEmpty ? emptyCart : cartWithItems}
                         className="cart"
                         alt="Cart"
                         onClick={togglePanier}
                     />
-
                 </div>
             </div>
 
             {/* ----- PANIER DÉFILANT ----- */}
-            <Panier open={panierOpen} onClose={() => setPanierOpen(false)} />
+            {panierOpen && (
+                <Panier open={panierOpen} onClose={() => setPanierOpen(false)} />
+            )}
         </>
     );
 }

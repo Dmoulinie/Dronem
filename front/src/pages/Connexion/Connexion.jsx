@@ -1,51 +1,84 @@
-import { NavLink } from "react-router-dom";
-import { useState } from "react"; 
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { loginUser, registerUser } from "../../services/api";
 import "../../assets/styles/style.css";
 import "./connexion.css";
 
 export default function Connexion() {
+    const [mode, setMode] = useState("login");
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const [mode, setMode] = useState("login"); // "login" ou "register"
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
+        setLoading(true);
+
         const data = new FormData(e.target);
 
-        console.log("Mode :", mode);
-        console.log("username :", data.get("username"));
-        console.log("password :", data.get("password"));
+        try {
+            let response;
 
-        if (mode === "register") {
-        console.log("firstname :", data.get("firstname"));
-        console.log("name :", data.get("name"));
-        console.log("email :", data.get("email"));
+            if (mode === "login") {
+                response = await loginUser(
+                    data.get("username"),
+                    data.get("password")
+                );
+            } else {
+                response = await registerUser({
+                    name: data.get("name"),
+                    firstname: data.get("firstname"),
+                    username: data.get("username"),
+                    email: data.get("email"),
+                    password: data.get("password"),
+                });
+            }
+
+            // 🔥 AuthContext : stocker user + token
+            login(response.user, response.token);
+
+            navigate("/");
+
+        } catch (err) {
+            setError(err.message || "Erreur inconnue");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
+      <>
+                  <div className="auth-header">
+                <h1 className="auth-title">Bienvenue sur votre espace Dronem</h1>
+                <small className="auth-subtitle">
+                    Gérez votre compte, suivez vos commandes et profitez de nos services en toute simplicité.
+                </small>
+            </div>
         <div className="auth-page">
-
-            {/* Switch login / register */}
             <div className="auth-switch-container">
                 <div className="auth-switch">
                     <label className={mode === "login" ? "active" : ""}>
                         <input
-                        type="radio"
-                        name="mode"
-                        value="login"
-                        checked={mode === "login"}
-                        onChange={() => setMode("login")}
+                            type="radio"
+                            name="mode"
+                            value="login"
+                            checked={mode === "login"}
+                            onChange={() => setMode("login")}
                         />
                         Se connecter
                     </label>
 
                     <label className={mode === "register" ? "active" : ""}>
                         <input
-                        type="radio"
-                        name="mode"
-                        value="register"
-                        checked={mode === "register"}
-                        onChange={() => setMode("register")}
+                            type="radio"
+                            name="mode"
+                            value="register"
+                            checked={mode === "register"}
+                            onChange={() => setMode("register")}
                         />
                         S'inscrire
                     </label>
@@ -54,36 +87,35 @@ export default function Connexion() {
 
             <div className="auth-card">
                 <form onSubmit={handleSubmit}>
-                    {/* Ces champs apparaissent UNIQUEMENT en mode register */}
                     {mode === "register" && (
                         <>
-                        <label className="auth-label" htmlFor="firstname">
-                            Prénom :
+                            <label className="auth-label" htmlFor="firstname">
+                                Prénom :
+                            </label>
+                            <input
+                                type="radio"
+                                name="mode"
+                                value="login"
+                                checked={mode === "login"}
+                                onChange={() => setMode("login")}
+                            />
+                            Se connecter
                         </label>
-                        <input
-                            id="firstname"
-                            name="firstname"
-                            type="text"
-                            className="auth-input"
-                            placeholder="Votre prénom"
-                            required
-                        />
 
-                        <label className="auth-label" htmlFor="name">
-                            Nom :
-                        </label>
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            className="auth-input"
-                            placeholder="Votre nom"
-                            required
-                        />
+                            <label className="auth-label" htmlFor="name">
+                                Nom :
+                            </label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                className="auth-input"
+                                placeholder="Votre nom"
+                                required
+                            />
                         </>
                     )}
 
-                    {/* username : présent dans les deux modes */}
                     <label className="auth-label" htmlFor="username">
                         Nom d'utilisateur :
                     </label>
@@ -96,24 +128,21 @@ export default function Connexion() {
                         required
                     />
 
-                    {/* email seulement en register */}
                     {mode === "register" && (
                         <>
-                        <label className="auth-label" htmlFor="email">
-                            Email :
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            className="auth-input"
-                            placeholder="Votre email"
-                            required
-                        />
+                            <label className="auth-label" htmlFor="email">
+                                Email :
+                            </label>
+                            <input
+                                type="radio"
+                                name="mode"
+                                value="register"
+                                checked={mode === "register"}
+                                onChange={() => setMode("register")}
+                            />
                         </>
                     )}
 
-                    {/* password : présent dans les deux modes */}
                     <label className="auth-label" htmlFor="password">
                         Mot de passe :
                     </label>
@@ -126,11 +155,19 @@ export default function Connexion() {
                         required
                     />
 
-                    <button type="submit" className="auth-button">
-                        {mode === "login" ? "Se connecter" : "Créer mon compte"}
+                    {error && (
+                        <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>
+                    )}
+
+                    <button type="submit" className="auth-button" disabled={loading}>
+                        {loading
+                            ? "Veuillez patienter..."
+                            : mode === "login"
+                                ? "Se connecter"
+                                : "Créer mon compte"}
                     </button>
                 </form>
             </div>
-        </div>
+        </>
     );
 }
