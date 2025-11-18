@@ -5,18 +5,52 @@
 
 /* Conteneur général de la page connexion */
 .auth-page {
-    margin: 60px 80px;
+    max-width: 500px;              /* largeur max du bloc */
+    width: 100%;                   /* prend 100% jusqu'à 900px */
+    margin: 60px auto;             /* centré horizontalement */
     background: #f6f6f0;
     padding: 20px 25px;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
     font-family: "Rubik", sans-serif;
 }
 
+/* ---- Titre / texte d'intro de la page connexion ---- */
+
+.auth-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem 0 0 0;
+    max-width: 800px;
+    font-size: 16px;
+    color: rgb(58, 53, 53);
+    font-family: "Rubik", sans-serif;
+}
+
+.auth-title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+
+.auth-subtitle {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+
+
 
 /* ----- SWITCH LOGIN / REGISTER ----- */
 
 .auth-switch-container {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .auth-switch {
