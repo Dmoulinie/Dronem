@@ -48,7 +48,6 @@ export default function Header() {
                 {/* BOTTOM */}
                 <div className="sidebar-bottom userAndCart">
 
-                    {/* Zone user : si pas connecté -> icône ; si connecté -> texte + bouton */}
                     {!user ? (
                         <NavLink to="/connexion" className="user-link">
                             <img src={userIcon} className="user-icon" alt="User profile" />
@@ -64,19 +63,19 @@ export default function Header() {
                         </div>
                     )}
 
-                    {/* ---- Icône Panier ---- */}
                     <img
                         src={isCartEmpty ? emptyCart : cartWithItems}
                         className="cart"
                         alt="Cart"
                         onClick={togglePanier}
                     />
-
                 </div>
             </div>
 
             {/* ----- PANIER DÉFILANT ----- */}
-            <Panier open={panierOpen} onClose={() => setPanierOpen(false)} />
+            {panierOpen && (
+                <Panier open={panierOpen} onClose={() => setPanierOpen(false)} />
+            )}
         </>
     );
 }
