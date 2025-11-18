@@ -1,5 +1,6 @@
 import "../../assets/styles/style.css";
 import "./home.css"
+
 export default function Home() {
     return (
         <div className="cards">
