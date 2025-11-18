@@ -1,157 +1,6 @@
-/* Container global */
-.panier-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  font-family: "Inter", sans-serif;
-}
-
-/* Titre */
-.panier-title {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* Liste */
-.panier-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Item */
-.panier-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  margin-bottom: 18px;
-  border-radius: 10px;
-  background: #f9f9fc;
-  border: 1px solid #e0e0e0;
-}
-
-.panier-item-img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-right: 20px;
-}
-
-/* Informations produit */
-.panier-item-info {
-  flex: 1;
-}
-
-.price {
-  margin: 6px 0;
-  font-weight: 500;
-}
-
-/* Boutons quantité */
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.quantity-controls button {
-  width: 30px;
-  height: 30px;
-  font-size: 1rem;
-  border: none;
-  background: #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.quantity-controls button:hover {
-  background: #ccc;
-}
-
-/* Actions */
-.panier-item-actions {
-  text-align: right;
-}
-
-.subtotal {
-  font-size: 0.95rem;
-  margin-bottom: 10px;
-}
-
-.remove-btn {
-  padding: 6px 12px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.remove-btn:hover {
-  background: #c0392b;
-}
-
-/* Footer */
-.panier-footer {
-  margin-top: 25px;
-  text-align: center;
-}
-
-.checkout-btn {
-  margin-top: 15px;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  background: #2ecc71;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.checkout-btn:hover {
-  background: #27ae60;
-}
-
-/* Panier vide */
-.panier-empty {
-  text-align: center;
-  font-size: 1.1rem;
-  padding: 20px 0;
-  opacity: 0.7;
-}
-
-.quantity-input {
-  width: 40px; /* 🔥 plus petit, idéal */
-  height: 28px;
-  text-align: center;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-  padding: 0;
-  outline: none;
-  appearance: textfield;
-}
-/* 🔥 enlève les flèches sur Chrome, Edge, Safari */
-.quantity-input::-webkit-outer-spin-button,
-.quantity-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.quantity-input:focus {
-  border-color: #888;
-}
-
-
-/* ----- OVERLAY (fond assombri) ----- */
+/* ============================
+   OVERLAY
+   ============================ */
 .panier-overlay {
   position: fixed;
   top: 0;
@@ -170,32 +19,194 @@
   pointer-events: auto;
 }
 
-/* ----- SLIDE LEFT PANEL ----- */
+/* ============================
+   SLIDE PANEL
+   ============================ */
 .panier-slide-left {
   position: fixed;
   top: 0;
-  left: -420px;        /* caché */
-  width: 400px;
+  left: -460px;
+  width: 460px;
   height: 100vh;
   background: white;
-  box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+  box-shadow: 4px 0 25px rgba(0,0,0,0.25);
   transition: left 0.35s ease;
   z-index: 99999;
   overflow-y: auto;
+  padding-bottom: 120px; /* espace pour le total */
 }
 
 .panier-slide-left.open {
-  left: 0;             /* visible */
+  left: 0;
 }
 
 /* Bouton fermer */
 .close-left-btn {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 18px;
+  right: 18px;
   background: none;
   border: none;
-  font-size: 1.4rem;
+  font-size: 2rem;
   cursor: pointer;
   color: #222;
+}
+
+/* ============================
+   CONTAINER
+   ============================ */
+.panier-container {
+  width: 92%;
+  margin: 60px auto;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================
+   TITRE
+   ============================ */
+.panier-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+/* ============================
+   ITEM PANIER
+   ============================ */
+.panier-item {
+  position: relative; /* pour la corbeille */
+  display: flex;
+  padding: 15px;
+  margin-bottom: 18px;
+  background: #f9f9fc;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  gap: 15px;
+}
+
+/* Bouton corbeille */
+.remove-icon {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #e74c3c;
+}
+
+.remove-icon:hover {
+  color: #c0392b;
+}
+
+/* Image du drone */
+.panier-item-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Bloc d’infos */
+.panier-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panier-item-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 600;
+  margin: 4px 0 10px;
+  white-space: nowrap;
+}
+
+/* Quantité */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-controls button {
+  width: 26px;
+  height: 26px;
+  background: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.quantity-input {
+  width: 45px;
+  height: 26px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Sous-total */
+.subtotal {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* ============================
+   FOOTER (total + bouton)
+   ============================ */
+.panier-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 460px;
+  background: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+}
+
+.panier-footer h3 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.checkout-btn {
+  width: 82%;
+  padding: 14px;
+  font-size: 1.15rem;
+  background: #2ecc71;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #27ae60;
+}
+
+/* panier vide */
+.panier-empty {
+  text-align: center;
+  opacity: 0.7;
+  font-size: 1.1rem;
+  padding: 25px 0;
+}
+
+.trash-icon {
+  width: 26px;
+  height: 26px;
+  opacity: 0.75;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.trash-icon:hover {
+  opacity: 1;
+  transform: scale(1.12);
 }

@@ -1,10 +1,15 @@
 import "./dronePage.css";
 import { useEffect, useState } from "react";
-import {NavLink, useParams} from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
+import { addToCart } from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
 
 export default function DronePage() {
     const { id } = useParams();
     const [drone, setDrone] = useState(null);
+
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/drones/getDroneById/${id}`)
@@ -15,10 +20,24 @@ export default function DronePage() {
 
     if (!drone) return <p>Chargement du drone...</p>;
 
+    // 🔥 Fonction d’ajout au panier
+    const handleAddToCart = async () => {
+        if (!user) {
+            navigate("/connexion");
+            return;
+        }
+
+        try {
+            await addToCart(user.id, drone.id, 1);
+            alert("Ajouté au panier !");
+        } catch (err) {
+            console.error(err);
+            alert("Erreur lors de l'ajout au panier");
+        }
+    };
+
     return (
         <main className="content-product">
-
-
             <div className="product-header">
                 <h1>{drone.name}</h1>
 
@@ -29,7 +48,6 @@ export default function DronePage() {
 
             <div className="content-row">
 
-                {/* Texte à gauche */}
                 <div className="product-text">
                     <div className="product-info">
                         <p><span>Modèle :</span> {drone.model}</p>
@@ -43,10 +61,11 @@ export default function DronePage() {
                     <p id="description">{drone.description}</p>
 
                     <br />
-                    <button className="btn-panier">Ajouter au panier</button>
+                    <button className="btn-panier" onClick={handleAddToCart}>
+                        Ajouter au panier
+                    </button>
                 </div>
 
-                {/* Image à droite */}
                 <div className="product-image">
                     <img
                         src={`http://localhost:8080/public/${drone.image_path}`}
@@ -55,6 +74,5 @@ export default function DronePage() {
                 </div>
             </div>
         </main>
-
     );
 }
