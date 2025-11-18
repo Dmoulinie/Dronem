@@ -18,14 +18,14 @@ export default function DronePage() {
     return (
         <main className="content-product">
 
-            {/* --- Conteneur bouton retour au-dessus de l'image --- */}
-            <div className="top-right">
+
+            <div className="product-header">
+                <h1>{drone.name}</h1>
+
                 <NavLink to="/listProducts" className="btn-retour">
                     ← Retour
                 </NavLink>
             </div>
-
-            <h1>{drone.name}</h1>
 
             <div className="content-row">
 
